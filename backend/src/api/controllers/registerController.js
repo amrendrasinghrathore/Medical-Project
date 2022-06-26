@@ -5,10 +5,11 @@ const Doctor = require("../models/Doctor")
 
 const handleNewUser = async (req, res) => {
     const {id, password, firstname, lastname} = req.body;
-    const duplicate = await User.findOne({id: id}).exec();
+    const duplicateDoctor = await Doctor.findOne({id: id}).exec();
+    const duplicateUser = await User.findOne({id: id}).exec();
     
     // raise conflict
-    if (duplicate) return res.sendStatus(409);
+    if (duplicateDoctor || duplicateUser) return res.sendStatus(409);
     
     try {
         const hashedPwd = await bycrypt.hash(password, 10);
@@ -31,10 +32,12 @@ const handleNewUser = async (req, res) => {
 
 const handleNewDoctor = async (req, res) => {
     const {id, password, firstname, lastname, specialization} = req.body;
-    const duplicate = await Doctor.findOne({id: id}).exec();
+    const duplicateDoctor = await Doctor.findOne({id: id}).exec();
+    const duplicateUser = await User.findOne({id: id}).exec();
+
     
     // raise conflict
-    if (duplicate) return res.sendStatus(409);
+    if (duplicateDoctor || duplicateUser) return res.sendStatus(409);
     
     try {
         const hashedPwd = await bycrypt.hash(password, 10);
