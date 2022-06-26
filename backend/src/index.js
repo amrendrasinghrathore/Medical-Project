@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 
 const connectDB = require('./api/config/dbConn');
 const handleNewUser = require('./api/controllers/registerController')
+const registerRoute = require('./api/routes/registerRoute')
 
 const app = express();
 
@@ -22,7 +23,8 @@ app.get("/", (req, res) => {
     res.send("hello world");    
 });
 
-app.use("/register-user", require('./api/routes/registerRoute'));
+app.use("/register-user", registerRoute.registerUserRouter);
+app.use("/register-doctor", registerRoute.registerDoctorRouter);
 
 mongoose.connection.once('open', () => {
     console.log("Connected to MongoDB");

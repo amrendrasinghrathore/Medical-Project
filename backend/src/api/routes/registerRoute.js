@@ -1,8 +1,15 @@
 const express = require('express');
-const router = express.Router();
+
+// route for user registeration
+const registerUserRouter = express.Router();
+// route for doctor registration
+const registerDoctorRouter = express.Router();
+
 
 const registerController = require('../controllers/registerController');
 
-router.post('/', registerController.handleNewUser)
+registerUserRouter.post('/', registerController.handleNewUser)
+registerDoctorRouter.post('/', registerController.handleNewDoctor)
 
-module.exports = router;
+
+module.exports = {registerUserRouter, registerDoctorRouter};

@@ -24,16 +24,15 @@ const doctorSchema = new Schema({
     },
     about: {
         type: String,
-        required: true,
     },
     address: {
         house: {
             type: String,
-            required: true
+            required: false
         },
         lane: {
             type: String,
-            required: true
+            required: false
         },
         landmark: {
             type: String,
@@ -41,13 +40,13 @@ const doctorSchema = new Schema({
         },
         city: {
             type: String,
-            required: true
+            required: false
         },
         state: {
             type: String,
-            required: true
+            required: false
         }
     }
-});
+}, {collection: "doctors"});
 
 module.exports = mongoose.model('Doctor', doctorSchema); 
