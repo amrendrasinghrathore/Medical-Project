@@ -45,7 +45,7 @@ const handleNewDoctor = async (req, res) => {
         // create a new user in the database
         const result = await Doctor.create({
             id: id,
-            password: password,
+            password: hashedPwd,
             firstname: firstname,
             lastname: lastname,
             specialization: specialization,
