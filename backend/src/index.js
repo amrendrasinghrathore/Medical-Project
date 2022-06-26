@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 
 
 const connectDB = require('./api/config/dbConn');
-const handleNewUser = require('./api/controllers/registerController')
 const registerRoute = require('./api/routes/registerRoute')
 
 const app = express();
