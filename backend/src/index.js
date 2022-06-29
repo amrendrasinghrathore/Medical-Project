@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 
 app.use("/register-user", registerRoute.registerUserRouter);
 app.use("/register-doctor", registerRoute.registerDoctorRouter);
+app.use("/login", loginRoute.loginRouter);
 
 mongoose.connection.once('open', () => {
     console.log("Connected to MongoDB");
