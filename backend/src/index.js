@@ -4,8 +4,10 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser')
 
 
+
 const connectDB = require('./api/config/dbConn');
-const registerRoute = require('./api/routes/registerRoute')
+const registerRoute = require('./api/routes/registerRoute');
+const loginRoute = require('./api/routes/loginRoute');
 
 const app = express();
 
@@ -24,7 +26,7 @@ app.get("/", (req, res) => {
 
 app.use("/register-user", registerRoute.registerUserRouter);
 app.use("/register-doctor", registerRoute.registerDoctorRouter);
-app.use("/login", loginRoute.loginRouter);
+app.use('/login', loginRoute.loginRouter);
 
 mongoose.connection.once('open', () => {
     console.log("Connected to MongoDB");
