@@ -10,7 +10,7 @@ import { Stack } from '@mui/material';
 
 const LoginForm = (props) => {
   return (
-    <Container sx={{ my: 20, width: { xs: '100%', md: '70%', lg: '60%' } }}>
+    <Container sx={{ mt: 20, width: { xs: '100%', md: '70%', lg: '60%' } }}>
       <Typography variant="h4" sx={{ fontWeight: '400' }}>
         Login
       </Typography>
