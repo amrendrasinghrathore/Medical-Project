@@ -1,35 +1,81 @@
-import {
-  Typography,
-  TextField,
-  Button,
-  Link,
-  InputAdornment,
-} from '@mui/material';
-import { Box, Container } from '@mui/system';
+import { Typography, TextField, Button, InputAdornment } from '@mui/material';
+import { Box } from '@mui/system';
 import { Stack } from '@mui/material';
+import { useState } from 'react';
+
+const formDefaultValues = {
+  id: '',
+  password: '',
+};
+
+const showErrorDefaultValues = {
+  id: false,
+  password: false,
+};
 
 const LoginForm = (props) => {
+  let [formValues, setFormValues] = useState(formDefaultValues);
+  let [showError, setShowError] = useState(showErrorDefaultValues);
+
+  const formValidCheck = () => {
+    let newShowError = { ...showError };
+
+    for (const key in formValues) {
+      newShowError[key] = !formValues[key];
+    }
+
+    setShowError(newShowError);
+  };
+
+  const handleSubmit = (e) => {
+    formValidCheck();
+  };
+
+  const handleChange = (value, e) => {
+    setFormValues({ ...formValues, [value]: e.target.value });
+  };
+
   return (
-    <Container sx={{ mt: 20, width: { xs: '100%', md: '70%', lg: '60%' } }}>
-      <Typography variant="h4" sx={{ fontWeight: '400' }}>
-        Login
-      </Typography>
+    <>
       <Box sx={{ mt: 5 }}>
         <Stack>
+          {/* Email */}
           <Typography sx={{ fontSize: '14px' }}>Email Address</Typography>
+          <Typography
+            color="error"
+            sx={{
+              fontSize: '10px',
+              display: showError['id'] ? 'block' : 'none',
+            }}
+          >
+            Please Enter an email address
+          </Typography>
           <TextField
-            id="email-id"
+            id="id"
             label=""
             placeholder="name@mail.com"
             size="small"
+            onChange={(e) => handleChange('id', e)}
             sx={{ mt: 0.5 }}
           />
+
+          {/* Password */}
           <Typography sx={{ mt: 2.5, fontSize: '14px' }}>Password</Typography>
+          <Typography
+            color="error"
+            sx={{
+              fontSize: '10px',
+              display: showError['password'] ? 'block' : 'none',
+            }}
+          >
+            Please enter your password
+          </Typography>
           <TextField
             id="password"
             type="password"
             placeholder="password"
             size="small"
+            onChange={(e) => handleChange('password', e)}
             sx={{
               mt: 0.5,
             }}
@@ -47,6 +93,7 @@ const LoginForm = (props) => {
                     }}
                     onClick={(e) => {
                       document.getElementById('password').value = '';
+                      setFormValues({ ...formValues, ['password']: '' });
                     }}
                   >
                     Reset Password
@@ -56,21 +103,14 @@ const LoginForm = (props) => {
             }}
           />
 
-          <Button variant="contained" sx={{ mt: 3 }}>
+          <Button variant="contained" sx={{ mt: 3 }} onClick={handleSubmit}>
             <Typography sx={{ fontWeight: '200', textTransform: 'none' }}>
               Login
             </Typography>
           </Button>
-
-          <Typography sx={{ mt: 2.5 }}>
-            Don't have an account?{' '}
-            <Link href="#" sx={{ textDecoration: 'None' }}>
-              Sign up
-            </Link>
-          </Typography>
         </Stack>
       </Box>
-    </Container>
+    </>
   );
 };
 

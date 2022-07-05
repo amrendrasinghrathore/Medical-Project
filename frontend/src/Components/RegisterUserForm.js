@@ -1,6 +1,6 @@
 import { Typography, TextField, Button, Link } from '@mui/material';
 
-import { Box, Container } from '@mui/system';
+import { Box } from '@mui/system';
 import { Stack } from '@mui/material';
 import { useState } from 'react';
 
@@ -8,7 +8,7 @@ import BasicAlert from './BasicAlert';
 
 const axios = require('axios').default;
 
-const formdefaultValues = {
+const formDefaultValues = {
   id: '',
   password: '',
   firstname: '',
@@ -24,7 +24,7 @@ const showErrorDefaultValues = {
 
 const RegisterUserForm = (props) => {
   let [isConfirmCorrect, setIsConfirmCorrect] = useState(false);
-  let [formValues, setFormValues] = useState(formdefaultValues);
+  let [formValues, setFormValues] = useState(formDefaultValues);
   let [showError, setShowError] = useState(showErrorDefaultValues);
   let [registerResponse, setRegisterResponse] = useState({
     success: '',
@@ -116,10 +116,7 @@ const RegisterUserForm = (props) => {
   };
 
   return (
-    <Container sx={{ mt: 10, width: { xs: '100%', md: '70%', lg: '60%' } }}>
-      <Typography variant="h4" sx={{ fontWeight: '400' }}>
-        Register
-      </Typography>
+    <>
       <Box sx={{ mt: 5 }}>
         <Stack>
           {/* email input */}
@@ -247,25 +244,18 @@ const RegisterUserForm = (props) => {
               Register
             </Typography>
           </Button>
-
-          <Typography sx={{ mt: 2.5 }}>
-            Want to register as a doctor?{' '}
-            <Link href="#" sx={{ textDecoration: 'None' }}>
-              Click here
-            </Link>
-          </Typography>
         </Stack>
       </Box>
 
       {showAlert && (
-        <Link href="#" sx={{ textDecoration: 'none' }}>
+        <Link href="/login" sx={{ textDecoration: 'none' }}>
           <BasicAlert
             severity={registerResponse.success}
             message={registerResponse.message}
           />
         </Link>
       )}
-    </Container>
+    </>
   );
 };
 
