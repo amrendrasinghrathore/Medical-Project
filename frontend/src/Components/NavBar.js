@@ -17,7 +17,7 @@ const CustomBtn = styled(Button)({
 const NavBar = () => {
   return (
     <div>
-      <AppBar position="static" sx={{ bgcolor: '#1B2845' }}>
+      <AppBar position="absolute" sx={{ bgcolor: '#1B2845' ,margin:0}}>
         <StyledToolbar position="static">
           <Typography
             variant="h4"
