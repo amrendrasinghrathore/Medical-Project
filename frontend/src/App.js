@@ -1,6 +1,7 @@
 import Login from './Pages/Login';
 import RegisterUser from './Pages/RegisterUser';
 import NavBar from './Components/NavBar';
+import BottomBar from './Components/BottomBar';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
